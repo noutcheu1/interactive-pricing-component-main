@@ -3,37 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
   <title>Frontend Mentor | Interactive pricing component</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    .attribution { 
+      margin-top: 40px;
+      font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+  
 </head>
 <body>
 
-  Simple, traffic-based pricing
-  Sign-up for our 30-day trial. No credit card required. 
+  <main>
+      <header>
+          <!-- <img src="./images/bg-pattern.svg" alt="" srcset="" class="image"> -->
+          <div class="description">
+            <h1> Simple, traffic-based pricing</h1>
+            <p>Sign-up for our 30-day trial. No credit card required. </p>          
+          </div>
+      </header>
+      <section>
+          <article class="article-card">
+            <div class="title">
+              <div class="title-left">100K PAGEVIEWS</div>
+              <div class="title-rigth"> <span class="range-value" id="range-value">10  </span><p>/month</p> </div>
+            </div>
+            <div  class="content">
+                <div class="range">  
+                  
+                  <input type="range"  class="slider" id="myRange"/>
+                </div>
+                <div class="sub-range">
+                    <p> Monthly Billing  &nbsp; 
+                      <span class="custom-check">
+                        <input type="checkbox" class="check-custom" id="check-custom">
+                        <label for="check-custom"></label> </span>  &nbsp; 
+                      Yearly Billing  <span class="discount" id="discount">  25% discount </span>
+                    </p>
+                </div>
+            </div>
+          </article>
+          <hr style="width:100%">
+          <article class="list">
+            <div class="list-description">
+              <ul>
+                <li>
+                  Unlimited websites
+                </li>
+                <li>
+                  100% data ownership
+                </li>
+                <li>
+                  Email reports</li>
+              </ul>
+            </div>
+            <div class="send">
+              <a href="#">
+                  
+                Start my trial
+              </a>
+            </div>              
 
-  Pageviews
-  $ /month
 
-  Monthly Billing
-  Yearly Billing 25% discount
-
-  Unlimited websites
-  100% data ownership
-  Email reports
-
-  Start my trial
-  
+              
+          </article>
+      </section>
+  </main>
+ 
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Challenge by <a href="https://www.frontendmentor.io/profile/noutcheu1" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">noutcheu libert </a>.
   </div>
 </body>
 </html>
+<script>
+  let slider = document.getElementById("myRange");
+  let output = document.getElementById("range-value");
+  output.innerHTML = slider.value; // Display the default slider value
+
+  // Update the current slider value (each time you drag the slider handle)
+  slider.oninput = function() {
+    output.innerHTML = "$ "+this.value+".00";
+    const sliderValue = this.value;
+    this.style.background = `linear-gradient(to right, hsl(174, 77%, 80%) ${sliderValue}%, #ccc ${sliderValue}%)`;
+  }
+  
+
+function progressScript() {
+  output.innerHTML = "$ "+slider.value;
+    const sliderValue = slider.value;
+    slider.style.background = `linear-gradient(to right, hsl(174, 77%, 80%) ${sliderValue}%, #ccc ${sliderValue}%)`;
+   
+    if (window.matchMedia("(max-width: 500px)").matches) {
+      var text = document.getElementById("discount").innerHTML;
+      
+      document.getElementById("discount").innerHTML = " 25% " ;
+    } else {
+      document.getElementById("discount").innerHTML = " 25% discount";
+    }
+}
+progressScript()
+</script>
